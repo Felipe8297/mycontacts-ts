@@ -1,0 +1,20 @@
+{
+  "name": "mycontacts-ts",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/client": "^7.4.2",
+    "hono": "^4.12.5",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/bun": "latest",
+    "eslint": "^10.0.2",
+    "globals": "^17.4.0",
+    "prisma": "^7.4.2",
+    "typescript-eslint": "^8.56.1"
+  }
+}

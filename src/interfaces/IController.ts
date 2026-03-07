@@ -1,0 +1,13 @@
+export interface IRequest {
+  body: Record<string, any>;
+  params: Record<string, string>;
+}
+
+export interface IResponse {
+  statusCode: number;
+  body: Record<string, any>;
+}
+
+export interface IController {
+  handle(request: IRequest): Promise<IResponse>;
+}
