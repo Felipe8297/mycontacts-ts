@@ -37,7 +37,7 @@ export class CreateContactController implements IController {
           name: contact.name,
           email: contact.email,
           phone: contact.phone,
-          category_id: contact.categoryId,
+          category_id: contact.category_id,
           message: 'Contact created successfully',
         },
       };

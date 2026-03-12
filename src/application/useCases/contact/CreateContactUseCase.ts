@@ -13,7 +13,7 @@ interface IOutput {
   name: string;
   email: string;
   phone: string | null;
-  categoryId: string | null;
+  category_id: string | null;
 }
 
 export class CreateContactUseCase {
@@ -54,7 +54,7 @@ export class CreateContactUseCase {
       name: contact.name,
       email: contact.email,
       phone: contact.phone,
-      categoryId: contact.categoryId,
+      category_id: contact.categoryId,
     };
   }
 }

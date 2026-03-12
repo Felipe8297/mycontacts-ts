@@ -1,5 +1,5 @@
-import { prismaClient } from '../../libs/prismaClient';
-import { ContactsNotFound } from '../errors/ContactsNotFound';
+import { prismaClient } from '../../../libs/prismaClient';
+import { ContactsNotFound } from '../../errors/ContactsNotFound';
 
 interface IContact { 
   id: string;
