@@ -1,5 +1,5 @@
-import { prismaClient } from '../../libs/prismaClient';
-import { CategoryNotFound } from '../errors/CategoryNotFound';
+import { prismaClient } from '../../../libs/prismaClient';
+import { CategoryNotFound } from '../../errors/CategoryNotFound';
 
 interface ICategoryInput {
   id: string;

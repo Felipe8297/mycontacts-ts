@@ -20,7 +20,7 @@ model Contact {
   name       String    @db.VarChar()
   email      String    @unique @db.VarChar()
   phone      String?   @db.VarChar()
-  categoryId String?   @map("category_id ") @db.Uuid
+  categoryId String?   @map("category_id") @db.Uuid
   category   Category? @relation(fields: [categoryId], references: [id])
 
   @@map("contacts")

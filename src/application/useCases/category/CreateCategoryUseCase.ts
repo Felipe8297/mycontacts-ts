@@ -1,4 +1,4 @@
-import { prismaClient } from "../../libs/prismaClient";
+import { prismaClient } from '../../../libs/prismaClient';
 
 interface ICreateCategoryInput {
   name: string;
