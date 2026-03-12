@@ -1,4 +1,4 @@
-import { UpdateCategoryUseCase } from '../application/useCases/UpdateCategoryUseCase';
+import { UpdateCategoryUseCase } from '../application/useCases/category/UpdateCategoryUseCase';
 
 export function makeUpdateCategoryUseCase() {
   return new UpdateCategoryUseCase();

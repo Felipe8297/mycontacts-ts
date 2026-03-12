@@ -1,4 +1,4 @@
-import { ListCategoryByIdUseCase } from '../application/useCases/ListCategoryByIdUseCase';
+import { ListCategoryByIdUseCase } from '../application/useCases/category/ListCategoryByIdUseCase';
 
 export function makeListCategoryByIdUseCase() {
   return new ListCategoryByIdUseCase();

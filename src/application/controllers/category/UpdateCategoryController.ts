@@ -1,6 +1,10 @@
-import { IController, IRequest, IResponse } from '../../../interfaces/IController';
+import {
+  IController,
+  IRequest,
+  IResponse,
+} from '../../../interfaces/IController';
 import { CategoryNotFound } from '../../errors/CategoryNotFound';
-import { UpdateCategoryUseCase } from '../../useCases/UpdateCategoryUseCase';
+import { UpdateCategoryUseCase } from '../../useCases/category/UpdateCategoryUseCase';
 
 export class UpdateCategoryController implements IController {
   constructor(private readonly updateCategory: UpdateCategoryUseCase) {}

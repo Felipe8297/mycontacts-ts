@@ -1,6 +1,10 @@
-import { IController, IRequest, IResponse } from '../../../interfaces/IController';
+import {
+  IController,
+  IRequest,
+  IResponse,
+} from '../../../interfaces/IController';
 import { CreateCategoryError } from '../../errors/CreateCategoryError';
-import { CreateCategoryUseCase } from '../../useCases/CreateCategoryUseCase';
+import { CreateCategoryUseCase } from '../../useCases/category/CreateCategoryUseCase';
 
 export class CreateCategoryController implements IController {
   constructor(private readonly createCategory: CreateCategoryUseCase) {}
@@ -37,7 +41,7 @@ export class CreateCategoryController implements IController {
           },
         };
       }
-     throw error;
+      throw error;
     }
   }
 }

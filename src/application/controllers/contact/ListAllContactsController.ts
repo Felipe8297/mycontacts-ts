@@ -1,6 +1,6 @@
 import { IController, IResponse } from '../../../interfaces/IController';
 import { ContactsNotFound } from '../../errors/ContactsNotFound';
-import { ListAllContactsUseCase } from '../../useCases/ListAllContactsUseCase';
+import { ListAllContactsUseCase } from '../../useCases/contact/ListAllContactsUseCase';
 
 export class ListAllContactsController implements IController {
   constructor(private readonly listAllContacts: ListAllContactsUseCase) {}

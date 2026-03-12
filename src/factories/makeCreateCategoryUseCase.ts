@@ -1,4 +1,4 @@
-import { CreateCategoryUseCase } from '../application/useCases/CreateCategoryUseCase';
+import { CreateCategoryUseCase } from '../application/useCases/category/CreateCategoryUseCase';
 
 export function makeCreateCategoryUseCase() {
   return new CreateCategoryUseCase();

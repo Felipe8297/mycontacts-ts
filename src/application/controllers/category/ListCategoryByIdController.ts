@@ -1,6 +1,6 @@
 import { IController, IRequest, IResponse } from '../../../interfaces/IController';
 import { CategoryNotFound } from '../../errors/CategoryNotFound';
-import { ListCategoryByIdUseCase } from '../../useCases/ListCategoryByIdUseCase';
+import { ListCategoryByIdUseCase } from '../../useCases/category/ListCategoryByIdUseCase';
 
 export class ListCategoryByIdController implements IController {
   constructor(private readonly listCategoryById: ListCategoryByIdUseCase) {}

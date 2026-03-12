@@ -1,7 +1,7 @@
 import { IController, IRequest, IResponse } from '../../../interfaces/IController';
 import { CategoryNotFound } from '../../errors/CategoryNotFound';
-import { DeleteCategoryUseCase } from '../../useCases/DeleteCategoryUseCase';
-import { ListCategoryByIdUseCase } from '../../useCases/ListCategoryByIdUseCase';
+import { DeleteCategoryUseCase } from '../../useCases/category/DeleteCategoryUseCase';
+import { ListCategoryByIdUseCase } from '../../useCases/category/ListCategoryByIdUseCase';
 
 export class DeleteCategoryController implements IController {
   constructor(private readonly deleteCategory: DeleteCategoryUseCase, private readonly listCategoryById: ListCategoryByIdUseCase) {}
