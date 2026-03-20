@@ -15,31 +15,17 @@ import { ContactNotFound } from '../../errors/ContactNotFound';
 
  export class UpdateContactUseCase {
   async execute(input: IUpdateContactInput): Promise<IOutput> {
-    const data: {
-      name?: string;
-      email?: string;
-      phone?: string;
-      categoryId?: string;
-    } = {};
-
-    if (input.name !== undefined) {
-      data.name = input.name;
-    }
-    if (input.email !== undefined) {
-      data.email = input.email;
-    }
-    if (input.phone !== undefined) {
-      data.phone = input.phone;
-    }
-    if (input.category !== undefined) {
-      data.categoryId = input.category;
-    }
 
     const contact = await prismaClient.contact.update({
       where: {
         id: input.id,
       },
-      data,
+      data: {
+        ...(input.name !== undefined && { name: input.name }),
+        ...(input.email !== undefined && { email: input.email }),
+        ...(input.phone !== undefined && { phone: input.phone }),
+        ...(input.category !== undefined && { categoryId: input.category }),
+      },
     });
 
     if (!contact) {
