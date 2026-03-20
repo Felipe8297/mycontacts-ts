@@ -1,4 +1,4 @@
-import { DeleteCategoryController } from '../application/controllers/category/DeleteCategoryController';
+import { DeleteCategoryController } from '../../application/controllers/category/DeleteCategoryController';
 import { makeDeleteCategoryUseCase } from './makeDeleteCategoryUseCase';
 import { makeListCategoryByIdUseCase } from './makeListCategoryByIdUseCase';
 

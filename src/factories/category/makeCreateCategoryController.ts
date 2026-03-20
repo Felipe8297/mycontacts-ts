@@ -1,4 +1,4 @@
-import { CreateCategoryController } from '../application/controllers/category/CreateCategoryController';
+import { CreateCategoryController } from '../../application/controllers/category/CreateCategoryController';
 import { makeCreateCategoryUseCase } from './makeCreateCategoryUseCase';
 
 export function makeCreateCategoryController() {

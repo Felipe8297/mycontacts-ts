@@ -1,4 +1,4 @@
-import { ListAllContactsController } from '../application/controllers/contact/ListAllContactsController';
+import { ListAllContactsController } from '../../application/controllers/contact/ListAllContactsController';
 import { makeListAllContactsUseCase } from './makeListAllContactsUseCase';
 
 export function makeListAllContactsController() {

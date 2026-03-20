@@ -1,11 +1,11 @@
 import { Hono } from 'hono';
-import { makeCreateCategoryController } from '../factories/makeCreateCategoryController';
-import { makeCreateContactController } from '../factories/makeCreateContactController';
-import { makeDeleteCategoryController } from '../factories/makeDeleteCategoryController';
-import { makeListAllCategoriesController } from '../factories/makeListAllCategoriesController';
-import { makeListAllContactsController } from '../factories/makeListAllContactsController';
-import { makeListCategoryByIdController } from '../factories/makeListCategoryByIdController';
-import { makeUpdateCategoryController } from '../factories/makeUpdateCategoryController';
+import { makeCreateCategoryController } from '../factories/category/makeCreateCategoryController';
+import { makeDeleteCategoryController } from '../factories/category/makeDeleteCategoryController';
+import { makeListAllCategoriesController } from '../factories/category/makeListAllCategoriesController';
+import { makeListCategoryByIdController } from '../factories/category/makeListCategoryByIdController';
+import { makeUpdateCategoryController } from '../factories/category/makeUpdateCategoryController';
+import { makeCreateContactController } from '../factories/contact/makeCreateContactController';
+import { makeListAllContactsController } from '../factories/contact/makeListAllContactsController';
 import { routeAdapter } from './adapters/routeAdapter';
 
 const app = new Hono();

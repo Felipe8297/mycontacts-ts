@@ -1,4 +1,4 @@
-import { ListCategoryByIdController } from '../application/controllers/category/ListCategoryByIdController';
+import { ListCategoryByIdController } from '../../application/controllers/category/ListCategoryByIdController';
 import { makeListCategoryByIdUseCase } from './makeListCategoryByIdUseCase';
 
 export function makeListCategoryByIdController() {
