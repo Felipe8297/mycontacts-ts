@@ -1,5 +1,5 @@
-import { prismaClient } from "../../../libs/prismaClient";
-import { ContactNotFound } from "../../errors/ContactNotFound";
+import { prismaClient } from '../../../libs/prismaClient';
+import { ContactNotFound } from '../../errors/ContactNotFound';
 
 interface IDeleteContactInput {
 	id: string;
@@ -33,7 +33,7 @@ export class DeleteContactUseCase {
 			id: contact.id,
 			name: contact.name,
 			email: contact.email,
-			phone: contact.phone || "",
+			phone: contact.phone ?? '',
 		};
 	}
 }

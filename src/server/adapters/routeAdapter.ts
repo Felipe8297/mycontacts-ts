@@ -9,7 +9,6 @@ export function routeAdapter(controller: IController) {
     } catch {
       // do nothing
     }
-
     const { statusCode, body } = await controller.handle({
       body: requestBody,
       params: c.req.param() as Record<string, string>,
