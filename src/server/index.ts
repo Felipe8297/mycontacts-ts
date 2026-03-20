@@ -28,8 +28,6 @@ const listContactByIdController = makeListContactByIdController();
 const updateContactController = makeUpdateContactController();
 const deleteContactController = makeDeleteContactController();
 
-app.get('/contacts', routeAdapter(listAllContactsController));
-
 app.post('/categories', routeAdapter(createCategoryController));
 app.get('/categories', routeAdapter(listAllCategoriesController));
 app.get('/categories/:id', routeAdapter(listCategoryByIdController));
@@ -37,6 +35,7 @@ app.put('/categories/:id', routeAdapter(updateCategoryController));
 app.delete('/categories/:id', routeAdapter(deleteCategoryController));
 
 app.post('/contacts', routeAdapter(createContactController));
+app.get('/contacts', routeAdapter(listAllContactsController));
 app.get('/contacts/:id', routeAdapter(listContactByIdController));
 app.put('/contacts/:id', routeAdapter(updateContactController));
 app.delete('/contacts/:id', routeAdapter(deleteContactController));
