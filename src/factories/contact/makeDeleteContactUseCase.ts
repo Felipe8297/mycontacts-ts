@@ -1,5 +1,7 @@
 import { DeleteContactUseCase } from '../../application/useCases/contact/DeleteContactUseCase';
+import { PrismaContactRepository } from '../../infra/repositories/PrismaContactRepository';
 
 export function makeDeleteContactUseCase() {
-  return new DeleteContactUseCase();
+  const contactRepository = new PrismaContactRepository();
+  return new DeleteContactUseCase(contactRepository);
 }

@@ -1,4 +1,5 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { ICategoryRepository } from '../../../interfaces/ICategoryRepository';
+import { IContactRepository } from '../../../interfaces/IContactRepository';
 import { CategoryNotFound } from '../../errors/CategoryNotFound';
 
 interface ICreateContactInput {
@@ -17,36 +18,31 @@ interface IOutput {
 }
 
 export class CreateContactUseCase {
+  constructor(
+    private readonly contactRepository: IContactRepository,
+    private readonly categoryRepository: ICategoryRepository,
+  ) {}
+
   async execute(input: ICreateContactInput): Promise<IOutput> {
     if (input.category) {
-      const categoryExists = await prismaClient.category.findUnique({
-        where: {
-          id: input.category,
-        },
-      });
+      const categoryExists = await this.categoryRepository.findById(input.category);
 
       if (!categoryExists) {
         throw new CategoryNotFound();
       }
     }
 
-    const existingContact = await prismaClient.contact.findUnique({
-      where: {
-        email: input.email,
-      },
-    });
+    const existingContact = await this.contactRepository.findByEmail(input.email);
 
     if (existingContact) {
       throw new Error('This email is already in use');
     }
 
-    const contact = await prismaClient.contact.create({
-      data: {
-        name: input.name,
-        email: input.email,
-        phone: input.phone ?? null,
-        categoryId: input.category ?? null,
-      },
+    const contact = await this.contactRepository.create({
+      name: input.name,
+      email: input.email,
+      phone: input.phone ?? null,
+      categoryId: input.category ?? null,
     });
 
     return {

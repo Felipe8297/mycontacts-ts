@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { ICategoryRepository } from '../../../interfaces/ICategoryRepository';
 import { CategoryNotFound } from '../../errors/CategoryNotFound';
 
 interface IDeleteCategoryInput {
@@ -11,16 +11,10 @@ interface IOutput {
 }
 
 export class DeleteCategoryUseCase {
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
+
   async execute(input: IDeleteCategoryInput): Promise<IOutput> {
-    const category = await prismaClient.category.delete({
-      where: {
-        id: input.id,
-      },
-      select: {
-        id: true,
-        name: true,
-      },
-    });
+    const category = await this.categoryRepository.delete(input.id);
     if (!category) {
       throw new CategoryNotFound();
     }

@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { IContactRepository } from '../../../interfaces/IContactRepository';
 import { ContactNotFound } from '../../errors/ContactNotFound';
 
 interface IContactInput {
@@ -14,24 +14,10 @@ interface IOutput {
 }
 
 export class ListContactByIdUseCase {
+  constructor(private readonly contactRepository: IContactRepository) {}
+
   async execute(input: IContactInput): Promise<IOutput> {
-    const contact =  await prismaClient.contact.findUnique({
-      where: {
-        id: input.id,
-      },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        phone: true,
-        categoryId: true,
-        category: {
-          select: {
-            name: true,
-          },
-        },
-      },
-    });
+    const contact = await this.contactRepository.findById(input.id);
 
     if (!contact) {
       throw new ContactNotFound();

@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { IContactRepository } from '../../../interfaces/IContactRepository';
 import { ContactNotFound } from '../../errors/ContactNotFound';
 
 interface IDeleteContactInput {
@@ -13,18 +13,10 @@ interface IOutput {
 }
 
 export class DeleteContactUseCase {
+	constructor(private readonly contactRepository: IContactRepository) {}
+
 	async execute(input: IDeleteContactInput): Promise<IOutput> {
-		const contact = await prismaClient.contact.delete({
-			where: {
-				id: input.id,
-			},
-			select: {
-				id: true,
-				name: true,
-				email: true,
-				phone: true,
-			},
-		});
+		const contact = await this.contactRepository.delete(input.id);
 		if (!contact) {
 			throw new ContactNotFound();
 		}

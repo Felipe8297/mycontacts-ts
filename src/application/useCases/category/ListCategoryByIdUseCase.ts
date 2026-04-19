@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { ICategoryRepository } from '../../../interfaces/ICategoryRepository';
 import { CategoryNotFound } from '../../errors/CategoryNotFound';
 
 interface ICategoryInput {
@@ -11,16 +11,10 @@ interface IOutput {
 }
 
 export class ListCategoryByIdUseCase {
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
+
   async execute(input: ICategoryInput): Promise<IOutput> {
-    const category = await prismaClient.category.findUnique({
-      where: {
-        id: input.id,
-      },
-      select: {
-        id: true,
-        name: true,
-      },
-    });
+    const category = await this.categoryRepository.findById(input.id);
 
     if (!category) {
       throw new CategoryNotFound();

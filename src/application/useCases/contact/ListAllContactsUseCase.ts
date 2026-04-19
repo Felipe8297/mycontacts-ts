@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { IContactRepository } from '../../../interfaces/IContactRepository';
 import { ContactsNotFound } from '../../errors/ContactsNotFound';
 
 interface IContact { 
@@ -15,24 +15,10 @@ interface IOutput {
 }
 
 export class ListAllContactsUseCase {
+  constructor(private readonly contactRepository: IContactRepository) {}
+
   async execute(): Promise<IOutput> {
-    const contacts = await prismaClient.contact.findMany({
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        phone: true,
-        categoryId: true,
-        category: {
-          select: {
-            name: true,
-          },
-        },
-      },
-      orderBy: {
-        name: 'asc',
-      },
-    });
+    const contacts = await this.contactRepository.findAll();
 
     if (contacts.length === 0) {
       throw new ContactsNotFound();

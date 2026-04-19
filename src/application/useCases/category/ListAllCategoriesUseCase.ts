@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { ICategoryRepository } from '../../../interfaces/ICategoryRepository';
 
 interface ICategories {
   id: string;
@@ -10,16 +10,10 @@ interface IOutput {
 }
 
 export class ListAllCategoriesUseCase {
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
+
   async execute(): Promise<IOutput> {
-    const categories = await prismaClient.category.findMany({
-      select: {
-        id: true,
-        name: true,
-      },
-      orderBy: {
-        name: 'desc',
-      },
-    });
+    const categories = await this.categoryRepository.findAll();
 
     return {
       categories: categories.map((category) => ({

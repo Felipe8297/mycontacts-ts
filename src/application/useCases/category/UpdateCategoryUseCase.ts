@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { ICategoryRepository } from '../../../interfaces/ICategoryRepository';
 import { CategoryNotFound } from '../../errors/CategoryNotFound';
 
 interface IUpdateCategoryInput {
@@ -12,15 +12,12 @@ interface IOutput {
 }
 
 export class UpdateCategoryUseCase {
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
+
   async execute(input: IUpdateCategoryInput): Promise<IOutput> {
 
-    const category = await prismaClient.category.update({
-      where: {
-        id: input.id,
-      },
-      data: {
-        name: input.name ?? '',
-      },
+    const category = await this.categoryRepository.update(input.id, {
+      name: input.name ?? '',
     });
     if (!category) {
       throw new CategoryNotFound();

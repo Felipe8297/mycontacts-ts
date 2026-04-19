@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { IContactRepository } from '../../../interfaces/IContactRepository';
 import { ContactNotFound } from '../../errors/ContactNotFound';
  
  interface IUpdateContactInput {
@@ -14,18 +14,15 @@ import { ContactNotFound } from '../../errors/ContactNotFound';
  }
 
  export class UpdateContactUseCase {
+  constructor(private readonly contactRepository: IContactRepository) {}
+
   async execute(input: IUpdateContactInput): Promise<IOutput> {
 
-    const contact = await prismaClient.contact.update({
-      where: {
-        id: input.id,
-      },
-      data: {
-        ...(input.name !== undefined && { name: input.name }),
-        ...(input.email !== undefined && { email: input.email }),
-        ...(input.phone !== undefined && { phone: input.phone }),
-        ...(input.category !== undefined && { categoryId: input.category }),
-      },
+    const contact = await this.contactRepository.update(input.id, {
+      ...(input.name !== undefined && { name: input.name }),
+      ...(input.email !== undefined && { email: input.email }),
+      ...(input.phone !== undefined && { phone: input.phone }),
+      ...(input.category !== undefined && { categoryId: input.category }),
     });
 
     if (!contact) {

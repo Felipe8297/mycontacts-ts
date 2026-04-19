@@ -1,5 +1,7 @@
 import { ListAllCategoriesUseCase } from '../../application/useCases/category/ListAllCategoriesUseCase';
+import { PrismaCategoryRepository } from '../../infra/repositories/PrismaCategoryRepository';
 
 export function makeListAllCategoriesUseCase() {
-  return new ListAllCategoriesUseCase();
+  const categoryRepository = new PrismaCategoryRepository();
+  return new ListAllCategoriesUseCase(categoryRepository);
 }

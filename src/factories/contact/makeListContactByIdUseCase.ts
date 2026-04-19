@@ -1,5 +1,7 @@
 import { ListContactByIdUseCase } from '../../application/useCases/contact/ListContactByIdUseCase';
+import { PrismaContactRepository } from '../../infra/repositories/PrismaContactRepository';
 
 export function makeListContactByIdUseCase() {
-  return new ListContactByIdUseCase();
+  const contactRepository = new PrismaContactRepository();
+  return new ListContactByIdUseCase(contactRepository);
 }

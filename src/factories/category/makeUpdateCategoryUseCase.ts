@@ -1,5 +1,7 @@
 import { UpdateCategoryUseCase } from '../../application/useCases/category/UpdateCategoryUseCase';
+import { PrismaCategoryRepository } from '../../infra/repositories/PrismaCategoryRepository';
 
 export function makeUpdateCategoryUseCase() {
-  return new UpdateCategoryUseCase();
+  const categoryRepository = new PrismaCategoryRepository();
+  return new UpdateCategoryUseCase(categoryRepository);
 }

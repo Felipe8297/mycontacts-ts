@@ -1,4 +1,4 @@
-import { prismaClient } from '../../../libs/prismaClient';
+import { ICategoryRepository } from '../../../interfaces/ICategoryRepository';
 
 interface ICreateCategoryInput {
   name: string;
@@ -10,11 +10,11 @@ interface IOutput {
 }
 
 export class CreateCategoryUseCase {
+  constructor(private readonly categoryRepository: ICategoryRepository) {}
+
   async execute(input: ICreateCategoryInput): Promise<IOutput> {
-    const category = await prismaClient.category.create({
-      data: {
-        name: input.name,
-      },
+    const category = await this.categoryRepository.create({
+      name: input.name,
     });
 
     return {

@@ -1,5 +1,7 @@
 import { UpdateContactUseCase } from '../../application/useCases/contact/UpdateContactUseCase';
+import { PrismaContactRepository } from '../../infra/repositories/PrismaContactRepository';
 
 export function makeUpdateContactUseCase() {
-  return new UpdateContactUseCase();
+  const contactRepository = new PrismaContactRepository();
+  return new UpdateContactUseCase(contactRepository);
 }
